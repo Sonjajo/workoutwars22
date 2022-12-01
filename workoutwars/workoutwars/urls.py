@@ -10,13 +10,12 @@ Class-based views
     1. Add an import:  from other_app.views import Home
     2. Add a URL to urlpatterns:  url(r'^$', Home.as_view(), name='home')
 Including another URLconf
-    1. Import the include() function: from django.conf.urls import url, include
-    2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
+    1. url() deprecated in Django 4.0+, use re_path instead. https://stackoverflow.com/questions/70319606/importerror-cannot-import-name-url-from-django-conf-urls-after-upgrading-to
 """
-from django.conf.urls import url, include
+from django.urls import include, re_path
 from django.contrib import admin
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-    url(r'^', include('workoutwarsapp.urls')),
+    re_path(r'^admin/', admin.site.urls),
+    re_path(r'^', include('workoutwarsapp.urls')),
 ]
