@@ -14,6 +14,12 @@
         {% for date, score in chart_data %}
           data.addRow([new Date({{ date.year }}, {{ date.month }} - 1, {{ date.day }}), {{ score }}])
         {% endfor %}
+        // The following code is an untested alternative to the above for loop
+        // for (let i = 0; i < chart_data.length; i++) {
+        //   let date = chart_data[i][0];
+        //   let score = chart_data[i][1];
+        //   data.addRow([new Date(date.year, date.month - 1, date.day), score])
+        // }
 
         // Set chart options
         var options = {
