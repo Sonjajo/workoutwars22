@@ -1,42 +1,48 @@
 ID,name,description,notes,increment,measurement,multiplier
 1,Badminton,Badminton,,15,mins,1
-2,Push-ups,Push-ups,,30,reps,1
-3,Stretching Plyos,Plyos for Stretching (dynamic warmup),,15,mins,1
+2,Push-ups,Push-ups,,30,reps,1.25
+3,Plyos for Stretching,Plyos for Stretching (dynamic warmup),,15,mins,1
 4,Static Stretching/Foam Rolling,Static Stretching/Foam Rolling,,15,mins,1
 5,Tennis,Tennis,,15,mins,1
 6,Burpees,Burpees,,20,reps,1.25
 7,Tabatas/HIIT,Tabatas (Non-Sprinting),,4,mins,1.25
-8,Biking,Biking,,15,mins,1.5
+8,Biking,Biking,,1,mile,0.5
 9,Elliptical,Elliptical,,15,mins,1.5
 10,Pilates,Pilates,,15,mins,1.5
 11,Surfing,Surfing,,15,mins,1.5
 12,Yoga,Yoga,,15,mins,1.5
 13,Zumba,Zumba,,15,mins,1.5
 14,Rowing,Rowing,,15,mins,1.5
-15,Throwing,Throwing,,15,mins,1.75
+15,Throwing,Throwing,,15,mins,1.5
 16,Physical Therapy,Physical Therapy,,15,mins,1.75
 17,Core,Core,,10,mins,1.75
 18,Agility Drills,Agility Drills (cones/ladders),,15,mins,1.75
 19,CrossFit,CrossFit,,15,mins,1.75
-20,Hill Sprints,Hill Sprints,,10,mins,1.75
+20,Running (Hill Sprints),Hill Sprints,,10,mins,1.75
 21,Jump Roping,Jump Roping,,15,mins,1.75
-22,Kayaking/Paddling,Kayaking/Paddling,,15,mins,1.75
+22,Kayaking/Paddling,Kayaking/Paddling,,15,mins,1.5
 23,Kickboxing,Kickboxing,,15,mins,1.75
-24,Distance Running,Running,,15,mins,1.75
+24,Running (Distance),Running 3 miles+ (daily cap of 5 pts),,1,mile,1
 25,Swimming,Swimming,,15,mins,1.75
-26,Lifting/Weight Training,Lifting/Weight Training,,15,mins,1.85
+26,Weight lifting,Weight lifting,,15,mins,1.85
 27,P90x/CrossFit/Insanity Workout,P90x/CrossFit/Insanity Workout,,15,mins,1.85
-28,Plyometrics,"Plyometrics (squats, lunges, etc.)",,15,mins,1.85
+28,Plyometrics,Plyometrics (squats, lunges, etc.),,15,mins,1.85
 29,Stadiums/Stairs,Stadiums/Stairs,,15,mins,1.85
-30,Sprinting/Spinning Tabatas,Sprinting/Spinning Tabatas,,4,mins,1.85
+30,Tabatas (Sprinting/Spinning),Tabatas (Sprinting/Spinning),,4,mins,1.85
 31,Track Workout,Track Workout,,15,mins,1.85
 32,Fun With Friends Drills (2+ people),Fun With Friends Drills (2+ people),,15,mins,1.85
-33,Mental Strength - Yellow,Mental Strength - Repeatable (Yellow),,15,mins,2
-34,"Frisbee (beach, goaltie, pickup)","Frisbee (beach, goaltie, pickup)",,15,mins,2
-35,Kung Fu/Zen Throwing,Kung Fu/Zen Throwing,,15,mins,2
-36,Mental Strength - Blue,Mental Strength - One time (Blue),,15,mins,3
-37,Grow Our Sport,Grow Our Sport,,1,person,3
-38,Mental Strength - Purple,"Mental Strength - One time, Juicy (Purple)",,15,mins,4
-39,Grow Our Sport - Youth,Grow Our Sport - Youth,,1,person,4
-40, Skiing, Skiing,,1,day,5
-41,Disc Golf,Disc Golf, 18 holes, 2
+33,Mental Strength (Yellow),Repeatable (Yellow),,15,mins,2
+34,Frisbee,Ultimate! (frisbee, goaltie, pickup),,15,mins,2
+35,Throwing (Kung Fu/Zen),Kung Fu/Zen Throwing,,15,mins,1.75
+36,Mental Strength (Blue),Once (Blue),,15,mins,3
+37,Grow Our Sport (Adult),Adult - Once,,1,person,3
+38,Mental Strength (Purple),Once, Juicy (Purple),,15,mins,4
+39,Grow Our Sport (U18),U18 - Once,,1,person,4
+40,Skiing/Snowboarding (Downhill), Downhill Skiing/Snowboarding (daily cap of 5 pts),,15,mins,0.75
+41,Disc Golf,Disc Golf, 9, holes, 1
+42,Hiking,Hiking, 15, mins,0.75
+43,Snowshoeing,Snowshoeing, 15, mins, 1
+44,Climbing, Climbing (and belaying), 15, mins, 1.25
+45,Skiing (XC), XC Skiing,,15,mins,1.5
+46,Spinning, Spinning,,15,mins,1.75
+47,Running (Sprints), Sprints,,4,mins,1.85

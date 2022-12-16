@@ -540,7 +540,7 @@ git pull origin master
 sudo touch /etc/uwsgi/sites/workoutwars.ini
 ```
 
-4. You should now see your changes reflected in production!
+4. Changes may take up to/around an hour to be reflected in production.
 
 ### Some Useful Tips
 

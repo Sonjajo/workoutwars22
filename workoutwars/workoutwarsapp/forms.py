@@ -46,8 +46,8 @@ class AddWorkoutForm(forms.ModelForm):
     duration = forms.DecimalField(
         min_value=0, max_digits=5, decimal_places=2,
         required=True,
-        label="Duration (in mins)",
-        help_text="unless pushups, burpees, Grow Our Sport, skiing, or disc golf then enter quantity")
+        label="Duration or Quantity",
+        help_text="i.e. X mins for yoga, X miles for biking")
     with_other_class = forms.BooleanField(required=False)
 
     class Meta:

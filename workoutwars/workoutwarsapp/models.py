@@ -91,7 +91,7 @@ class Workout(models.Model):
         #Bonus point for working out with a teammate from another class
         if self.with_other_class:
             s += 1
-        return round(s, 2)
+        return round(s, 2) #rounds score to 2 decimal places
 
     def __unicode__(self):
         return '{0} | {1:%b-%d} | Score={2:.2f}'.format(

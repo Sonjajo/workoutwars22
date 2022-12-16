@@ -20,6 +20,10 @@ START_DATE = datetime.date(2022, 12, 17)
 TODAY = datetime.date.today()
 DAYS_ELAPSED = (TODAY - START_DATE).days + 1
 
+# to prevent a "ZeroDivisionError at /scoreboard/" when working on website before the startdate
+if DAYS_ELAPSED <= 0:
+    DAYS_ELAPSED = 1
+
 # Page views
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
@@ -81,7 +85,7 @@ def coach(request):
 
     for p in profiles:
         try:
-            workouts = Workout.objects.filter(user=p.user, exercise=exercise);
+            workouts = Workout.objects.filter(user=p.user, exercise=exercise)
             durations = [w.duration for w in workouts]
         except ObjectDoesNotExist:
             workouts = []
