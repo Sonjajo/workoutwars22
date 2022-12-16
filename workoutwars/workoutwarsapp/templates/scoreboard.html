@@ -2,7 +2,7 @@
 
 {% block extra_head %}
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-  <script type="text/javascript"> //Chart for teams
+  <!-- <script type="text/javascript"> //Chart for teams
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChartTeams);
 
@@ -11,7 +11,7 @@
       var team_data = new google.visualization.DataTable();
       team_data.addColumn('string', 'Team');
       team_data.addColumn('number', 'Score');
-      team_data.addRows({{team_chart_data|safe}});
+      // team_data.addRows({{team_chart_data|safe}});
 
       // Set chart options
       var team_options = {
@@ -26,7 +26,7 @@
       var team_chart = new google.visualization.ColumnChart(document.getElementById('team_chart_div'));
       team_chart.draw(team_data, team_options);
     }
-  </script>
+  </script> -->
   <script type="text/javascript"> // Chart for classes
     google.charts.load('current', {'packages':['corechart']});
     google.charts.setOnLoadCallback(drawChart);
@@ -62,9 +62,9 @@
               <h1>Scoreboards</h1>
               <hr class="my-4">
 
-              <p>See how your team and class are doing! Click <a href="{% url 'rankings' %}">here</a> to see individual rankings.</p>
+              <p>See how your class is doing! Click <a href="{% url 'rankings' %}">here</a> to see individual rankings.</p>
 
-              {% if team_scores %}
+              <!-- {% if team_scores %}
                 <h3>Points Earned by Team</h3>
 
                 <p>Score by team per person</p>
@@ -104,7 +104,7 @@
                   </tbody>
                 </table>
             </div>
-              {% endif %}
+              {% endif %} -->
 
               {% if class_scores %}
                 <h3>Points Earned by Year</h3>

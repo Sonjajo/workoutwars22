@@ -138,7 +138,7 @@ So far you've launched the app locally and learned how to import data. But how d
 - The 2GB Linode with 50GB of storage is more than enough for us.
 - **IMPORTANT**: Make sure you select **Ubuntu 16** as your OS - this will be important later.
 - You can choose your hostname to be whatever you want. I named mine `piequeens`
-- When updating /etc/hosts, you can use `workoutwars.piequeens.org` as your FQDN. Make sure to add both the IPv4 and IPv6 lines to the file. For example:
+- When updating [/etc/hosts](https://www.linode.com/docs/guides/set-up-and-secure/#update-your-systems-hosts-file), you can use `workoutwars.piequeens.org` as your FQDN. Make sure to add both the IPv4 and IPv6 lines to the file. For example:
 
 ```
 127.0.0.1       localhost
@@ -175,8 +175,8 @@ Next you need to set up workoutwars.piequeens.org to point to your new server. F
 
 1. Log onto [www.godaddy.com](www.godaddy.com) using the pie queens username and password (can be found on the workout wars google doc which is not linked here for security reasons).
 2. Under `Domains`, next to `piequeens.org`, select `DNS`.
-3. Find the record named `workoutwars` of type `A` and edit the IP to point to the public **IPv4** address of your new server.
-4. Find the record named `workoutwars` of type `AAAA` and edit the IP to point to the public **IPv6** address of your new server. Make sure to save your changes.
+3. Find the record named `workoutwars` of type `A` and edit the IP to point to the public **IPv4** address of your new server. (the shorter IP address, separated by dots)
+4. Find the record named `workoutwars` of type `AAAA` and edit the IP to point to the public **IPv6** address of your new server. Make sure to save your changes. (the longer IP address, separated by colons)
 
 ### Set up your Environment on Ubuntu
 
@@ -186,19 +186,19 @@ Next you need to set up workoutwars.piequeens.org to point to your new server. F
 ssh pqadmin@workoutwars.piequeens.org
 ```
 
-2. Install the system packages required for nginx, the SQLite Python bindings, and managing Python Tools:
+2. Install the system packages required for nginx, the SQLite Python bindings, and managing Python Tools. You may need to run `sudo apt-get update` if some of those installs fail.
 
 ```
-sudo apt-get install build-essential nginx python-dev python3-pip python-sqlite sqlite git
+sudo apt-get install build-essential nginx python python3-pip python-sqlite sqlite git
 ```
 
-3. Upgrade pip by running:
+3. Upgrade pip by running the following. This command didn't work for me because we're using python3.
 
 ```
 sudo pip install --upgrade pip
 ```
 
-4. Install `virtualenv` and `virtualenv` wrapper:
+4. Install `virtualenv` and `virtualenv` wrapper. (The `-H` flag caused me trouble, so I left it out and it worked)
 
 ```
 sudo -H pip install virtualenv virtualenvwrapper
@@ -246,7 +246,7 @@ pip install django-bootstrap4
 git clone [your repo http url].git
 ```
 
-11. Make a copy of `settings-example.py` called `settings.py`:
+11. Make a copy of `settings-example.py` called `settings.py`. Don't forget to change the year from "21" to the appropriate one:
 
 ```
 cp /home/pqadmin/workoutwars21/workoutwars/workoutwars/settings-example.py /home/pqadmin/workoutwars21/workoutwars/workoutwars/settings.py
@@ -282,17 +282,17 @@ Don't forget to save your changes!
 
 ```
 cd workoutwars21/workoutwars
-python manage.py collecstatic
-python manage.py makemigrations
-python manage.py migrate
-python manage.py runserver 0.0.0.0:8080
+python3 manage.py collectstatic
+python3 manage.py makemigrations
+python3 manage.py migrate
+python3 manage.py runserver 0.0.0.0:8080
 ```
 
 Navigate to [workoutwars.piequeens.org:8080](workoutwars.piequeens.org:8080) in your browser. The workout wars app should show up. Don't worry if it doesn't look styled correctly. We'll get to that in a bit. When you're done testing this, take it down by pressing `CTRL+C` in the terminal.
 
 ### Configure uWSGI
 
-uWSGI is an application server that can communicate with applications over a standard interface called WSGI.
+uWSGI is an application server that can communicate with applications over a standard interface called WSGI. **NOTE: Digital Ocean's django deployment guide (linked at the bottom of this section) SAVED me throughout this process. If you get stuck on any uwsgi/nginx stuff, this will help.**
 
 1. Quickly test the application server by passing the information for our app:
 
@@ -323,14 +323,15 @@ uid = pqadmin
 projenv = pqenv
 base = /home/%(uid)
 
-chdir = %(base)/workoutwars21/%(project)
+chdir = %(base)/workoutwars22/%(project)
 home = %(base)/Env/%(projenv)
 module = %(project).wsgi:application
 
 master = true
 processes = 2
 
-socket = %(base)/workoutwars21/%(project)/%(project).sock
+socket = %(base)/workoutwars22/%(project)/%(project).sock
+chown-socket = %(uid):www-data
 chmod-socket = 664
 vacuum = true
 ```
@@ -355,10 +356,28 @@ env LOGTO=/var/log/uwsgi.log
 exec $UWSGI --master --emperor /etc/uwsgi/sites --die-on-term --uid pqadmin --gid www-data --logto $LOGTO
 ```
 
-7. Start the `uwsgi` service:
+7. Create a systemd Unit File for uWSGI:
 
 ```
-sudo service uwsgi start
+sudo nano /etc/systemd/system/uwsgi.service
+```
+
+8. Paste the following contents in it and save. Note that in some documentation, for `ExecStart`, they will tell you to use the `--emperor` option (which allows you to have multiple `.ini` files), but we only have one site and thus can link directly to our singular `workoutwars.ini` file.
+
+```
+[Unit]
+Description=uWSGI service for Workout Wars
+
+[Service]
+ExecStartPre=/bin/bash -c 'mkdir -p /run/uwsgi; chown pqadmin:www-data /run/uwsgi'
+ExecStart=/usr/local/bin/uwsgi --ini /etc/uwsgi/sites/workoutwars.ini
+Restart=always
+KillSignal=SIGQUIT
+Type=notify
+NotifyAccess=all
+
+[Install]
+WantedBy=multi-user.target
 ```
 
 ### Configure nginx
@@ -382,16 +401,16 @@ sudo nano /etc/nginx/sites-available/workoutwars
 ```
 server {
     listen 80;
-    server_name workoutwars.piequeens.org;
+    server_name workoutwars.piequeens.org www.workoutwars.piequeens.org;
 
     location = /favicon.ico {access_log off; log_not_found off; }
     location /static/ {
-        root /home/pqadmin/workoutwars18/workoutwars;
+        root /home/pqadmin/workoutwars22/workoutwars;
     }
 
     location / {
         include         uwsgi_params;
-        uwsgi_pass      unix:/home/pqadmin/workoutwars18/workoutwars/workoutwars.sock;
+        uwsgi_pass      unix:/home/pqadmin/workoutwars22/workoutwars/workoutwars.sock;
     }
 }
 ```
@@ -399,16 +418,32 @@ server {
 4. Create a symlink to nginx’s `sites-enabled` directory to enable your site configuration file:
 
 ```
-sudo ln -s /etc/nginx/sites-available/sample /etc/nginx/sites-enabled
+sudo ln -s /etc/nginx/sites-available/workoutwars /etc/nginx/sites-enabled
 ```
 
-5. Check nginx’s configuration and restart it:
+5. Run each of the following commands separately to heck nginx’s configuration, restart it, then start uwsgi. **Note: a previous iteration of this README used `service` in place of `systemctl` but the former command did not work for me, and the latter did.**
 
 ```
-sudo service nginx configtest && sudo service nginx restart
+sudo nginx -t
+sudo systemctl restart nginx
+sudo systemctl start uwsgi
 ```
 
-6. You should now be able to reach workout wars at [workoutwars.piequeens.org](workoutwars.piequeens.org)!
+6. Not sure if the following command is neccesary, but I (sonja) ran it because it was in the documentation. You may have to `sudo apt install ufw` first.
+
+```
+sudo ufw allow 'Nginx Full'
+
+```
+
+7. Finally, enable both of the services to start automatically at boot by typing:
+
+```
+sudo systemctl enable nginx
+sudo systemctl enable uwsgi
+```
+
+8. You should now be able to reach workout wars at [workoutwars.piequeens.org](workoutwars.piequeens.org)!
 
 ### Useful Links
 

@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 from django.utils import timezone
 
-from workoutwarsapp.models import Team, Class, Exercise, Workout
+from workoutwarsapp.models import Class, Exercise, Workout
 
 class SignUpForm(UserCreationForm):
     first_name = forms.CharField(max_length=30, required=True,
@@ -15,11 +15,11 @@ class SignUpForm(UserCreationForm):
         help_text='(or what you go by if you don&#39;t have one)'
         )
     email = forms.EmailField(max_length=254, required=True)
-    team = forms.ModelChoiceField(
-        queryset=Team.objects.all(),
-        required=False,
-        help_text='Check PQ Captains\' email for your assigned team'
-        )
+    # team = forms.ModelChoiceField(
+    #     queryset=Team.objects.all(),
+    #     required=False,
+    #     help_text='Check PQ Captains\' email for your assigned team'
+    #     )
     class_name = forms.ModelChoiceField(
         queryset=Class.objects.all(),
         label='Class',
@@ -28,7 +28,7 @@ class SignUpForm(UserCreationForm):
 
     class Meta:
         model = User
-        fields = ('username', 'first_name', 'last_name', 'nick_name', 'email', 'class_name', 'team', 'password1', 'password2', )
+        fields = ('username', 'first_name', 'last_name', 'nick_name', 'email', 'class_name', 'password1', 'password2', )
 
 class AddWorkoutForm(forms.ModelForm):
     workout_date = forms.DateField(

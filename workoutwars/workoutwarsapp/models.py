@@ -17,11 +17,11 @@ class Profile(models.Model):
         blank=True,
         null=True # nullable to allow createsuperuser command
         )
-    team = models.ForeignKey('Team',
-        on_delete=models.CASCADE,
-        blank=True,
-        null=True # nullable to allow createsuperuser command
-        )
+    # team = models.ForeignKey('Team',
+    #     on_delete=models.CASCADE,
+    #     blank=True,
+    #     null=True # nullable to allow createsuperuser command
+    #     )
 
     def __unicode__(self):
         return '{}'.format(self.nick_name)
@@ -35,14 +35,14 @@ def update_user_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
     instance.profile.save()
 
-class Team(models.Model):
-    name = models.CharField(max_length=30)
+# class Team(models.Model):
+#     name = models.CharField(max_length=30)
 
-    def __unicode__(self):
-        return '{}'.format(self.name)
+#     def __unicode__(self):
+#         return '{}'.format(self.name)
 
-    def __str__(self):
-        return '{}'.format(self.name)
+#     def __str__(self):
+#         return '{}'.format(self.name)
 
 class Class(models.Model):
     name = models.CharField(max_length=30)

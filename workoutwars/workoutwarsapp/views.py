@@ -13,7 +13,7 @@ from django.views.generic import TemplateView
 import datetime
 
 from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
-from workoutwarsapp.models import User, Profile, Class, Team, Exercise, Workout
+from workoutwarsapp.models import User, Profile, Class, Exercise, Workout
 
 # Globals
 START_DATE = datetime.date(2021, 12, 18)
@@ -30,9 +30,9 @@ def scoreboard(request):
     classes = Class.objects.all()
     class_scores = []
     class_chart_data = []
-    teams = Team.objects.all()
-    team_scores = []
-    team_chart_data = []
+    # teams = Team.objects.all()
+    # team_scores = []
+    # team_chart_data = []
 
     for c in classes:
         c_workouts = Workout.objects.filter(user__profile__class_name=c)
@@ -46,17 +46,17 @@ def scoreboard(request):
         class_scores.append([c.plural, round(c_score, 2), round(c_normalized, 2), c_per_day])
         class_chart_data.append([str(c.plural), float(round(c_normalized, 2))])
 
-    for t in teams:
-        t_workouts = Workout.objects.filter(user__profile__team=t)
-        t_score = sum([workout.score for workout in t_workouts])
-        t_count = len(Profile.objects.filter(team=t))
-        if t_count == 0:
-            t_normalized = 0
-        else:
-            t_normalized = t_score / t_count
-        t_per_day = round(float(t_normalized) / float(NUM_DAYS), 2)
-        team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2), t_per_day])
-        team_chart_data.append([str(t.name), float(round(t_normalized, 2))])
+    # for t in teams:
+    #     t_workouts = Workout.objects.filter(user__profile__team=t)
+    #     t_score = sum([workout.score for workout in t_workouts])
+    #     t_count = len(Profile.objects.filter(team=t))
+    #     if t_count == 0:
+    #         t_normalized = 0
+    #     else:
+    #         t_normalized = t_score / t_count
+    #     t_per_day = round(float(t_normalized) / float(NUM_DAYS), 2)
+    #     team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2), t_per_day])
+    #     team_chart_data.append([str(t.name), float(round(t_normalized, 2))])
 
     try:
         recent_workouts = Workout.objects.all().order_by('workout_date')
@@ -68,14 +68,14 @@ def scoreboard(request):
         {
             'class_scores': class_scores,
             'class_chart_data': class_chart_data,
-            'team_scores': team_scores,
-            'team_chart_data': team_chart_data,
+            # 'team_scores': team_scores,
+            # 'team_chart_data': team_chart_data,
         }
     )
 
 @login_required
 def coach(request):
-    profiles = Profile.objects.all();
+    profiles = Profile.objects.all()
     total_durations = []
     exercise = Exercise.objects.get(name='Throwing')
 

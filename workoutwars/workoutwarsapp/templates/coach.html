@@ -18,7 +18,7 @@
                       <thead>
                         <tr>
                           <th scope="col">Name</th>
-                          <th scope="col">Team</th>
+                          <!-- <th scope="col">Team</th> -->
                           <th scope="col">Class</th>
                           <th scope="col">Duration</th>
                         </tr>
@@ -27,7 +27,7 @@
                         {% for profile, total_duration in rankings %}
                           <tr>
                             <td><a href="{% url 'indiv' username=profile.user.get_username %}">{{ profile.nick_name }}</a></td>
-                            <td>{{ profile.team }}</td>
+                            <!-- <td>{{ profile.team }}</td> -->
                             <td>{{ profile.class_name }}</td>
                             <td>{{ total_duration }}</td>
                           </tr>
