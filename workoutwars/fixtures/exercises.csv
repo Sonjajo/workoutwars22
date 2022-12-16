@@ -26,23 +26,23 @@ ID,name,description,notes,increment,measurement,multiplier
 25,Swimming,Swimming,,15,mins,1.75
 26,Weight lifting,Weight lifting,,15,mins,1.85
 27,P90x/CrossFit/Insanity Workout,P90x/CrossFit/Insanity Workout,,15,mins,1.85
-28,Plyometrics,Plyometrics (squats, lunges, etc.),,15,mins,1.85
+28,Plyometrics,Plyometrics (squats/lunges/etc),,15,mins,1.85
 29,Stadiums/Stairs,Stadiums/Stairs,,15,mins,1.85
 30,Tabatas (Sprinting/Spinning),Tabatas (Sprinting/Spinning),,4,mins,1.85
 31,Track Workout,Track Workout,,15,mins,1.85
 32,Fun With Friends Drills (2+ people),Fun With Friends Drills (2+ people),,15,mins,1.85
 33,Mental Strength (Yellow),Repeatable (Yellow),,15,mins,2
-34,Frisbee,Ultimate! (frisbee, goaltie, pickup),,15,mins,2
+34,Frisbee,Ultimate (frisbee/goaltie/pickup),,15,mins,2
 35,Throwing (Kung Fu/Zen),Kung Fu/Zen Throwing,,15,mins,1.75
 36,Mental Strength (Blue),Once (Blue),,15,mins,3
 37,Grow Our Sport (Adult),Adult - Once,,1,person,3
-38,Mental Strength (Purple),Once, Juicy (Purple),,15,mins,4
+38,Mental Strength (Purple),Once Juicy (Purple),,15,mins,4
 39,Grow Our Sport (U18),U18 - Once,,1,person,4
 40,Skiing/Snowboarding (Downhill), Downhill Skiing/Snowboarding (daily cap of 5 pts),,15,mins,0.75
-41,Disc Golf,Disc Golf, 9, holes, 1
-42,Hiking,Hiking, 15, mins,0.75
-43,Snowshoeing,Snowshoeing, 15, mins, 1
-44,Climbing, Climbing (and belaying), 15, mins, 1.25
+41,Disc Golf,Disc Golf,,9,holes,1
+42,Hiking,Hiking,,15,mins,0.75
+43,Snowshoeing,Snowshoeing,,15,mins,1
+44,Climbing, Climbing (and belaying),,15,mins,1.25
 45,Skiing (XC), XC Skiing,,15,mins,1.5
 46,Spinning, Spinning,,15,mins,1.75
 47,Running (Sprints), Sprints,,4,mins,1.85
