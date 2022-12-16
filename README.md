@@ -421,7 +421,7 @@ server {
 sudo ln -s /etc/nginx/sites-available/workoutwars /etc/nginx/sites-enabled
 ```
 
-5. Run each of the following commands separately to heck nginx’s configuration, restart it, then start uwsgi. **Note: a previous iteration of this README used `service` in place of `systemctl` but the former command did not work for me, and the latter did.**
+5. Run each of the following commands separately to check nginx’s configuration, restart it, then start uwsgi. **Note: a previous iteration of this README used `service` in place of `systemctl` but the former command did not work for me, and the latter did.**
 
 ```
 sudo nginx -t

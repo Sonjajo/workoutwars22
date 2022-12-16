@@ -16,9 +16,9 @@ from workoutwarsapp.forms import SignUpForm, AddWorkoutForm
 from workoutwarsapp.models import User, Profile, Class, Exercise, Workout
 
 # Globals
-START_DATE = datetime.date(2021, 12, 18)
+START_DATE = datetime.date(2022, 12, 17)
 TODAY = datetime.date.today()
-NUM_DAYS = (TODAY - START_DATE).days + 1
+DAYS_ELAPSED = (TODAY - START_DATE).days + 1
 
 # Page views
 class HomePageView(TemplateView):
@@ -42,7 +42,7 @@ def scoreboard(request):
             c_normalized = 0
         else:
             c_normalized = c_score / c_count
-        c_per_day = round(float(c_normalized) / float(NUM_DAYS), 2)
+        c_per_day = round(float(c_normalized) / float(DAYS_ELAPSED), 2)
         class_scores.append([c.plural, round(c_score, 2), round(c_normalized, 2), c_per_day])
         class_chart_data.append([str(c.plural), float(round(c_normalized, 2))])
 
@@ -54,7 +54,7 @@ def scoreboard(request):
     #         t_normalized = 0
     #     else:
     #         t_normalized = t_score / t_count
-    #     t_per_day = round(float(t_normalized) / float(NUM_DAYS), 2)
+    #     t_per_day = round(float(t_normalized) / float(DAYS_ELAPSED), 2)
     #     team_scores.append([t.name, round(t_score, 2), round(t_normalized, 2), t_per_day])
     #     team_chart_data.append([str(t.name), float(round(t_normalized, 2))])
 
@@ -123,7 +123,7 @@ def indiv(request, username):
         scores = []
 
     # Get line chart data
-    chart_data = [[START_DATE + datetime.timedelta(days=x), 0] for x in range(0, NUM_DAYS)]
+    chart_data = [[START_DATE + datetime.timedelta(days=x), 0] for x in range(0, DAYS_ELAPSED)]
     for w in workouts:
         diff = (w.workout_date - START_DATE).days
         if diff >= 0 and diff < len(chart_data):
@@ -132,7 +132,7 @@ def indiv(request, username):
     # Get statistics information
     num_workouts = len(workouts)
     total_points = round(sum(scores), 2)
-    avg_per_day = round(float(total_points) / float(NUM_DAYS), 2)
+    avg_per_day = round(float(total_points) / float(DAYS_ELAPSED), 2)
 
     # Pagination
     page = request.GET.get('page', 1)
