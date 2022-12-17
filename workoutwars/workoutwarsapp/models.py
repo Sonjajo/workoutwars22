@@ -88,9 +88,7 @@ class Workout(models.Model):
         i = self.exercise.increment
         m = self.exercise.multiplier
         s = d / i * m
-        print("exercise name:", self.exercise.name)
         if self.exercise.name == 'Biking' or self.exercise.name == 'Running (Distance)' or self.exercise.name == 'Skiing/Snowboarding (Downhill)':
-            print("capping at 5pts!")
             s = min(s, 5) #cap these exercises at 5 points
         #Bonus point for working out with a teammate from another class
         if self.with_other_class:
