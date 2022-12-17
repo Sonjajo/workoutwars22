@@ -584,9 +584,9 @@ pip3 install simplejson
 5. `cd` into the `fixtures` folder and create json files by running:
 
 ```
-python csv2json.py teams.csv workoutwarsapp.team
-python csv2json.py classes.csv workoutwarsapp.class
-python csv2json.py exercises.csv workoutwarsapp.exercise
+python3 csv2json.py teams.csv workoutwarsapp.team
+python3 csv2json.py classes.csv workoutwarsapp.class
+python3 csv2json.py exercises.csv workoutwarsapp.exercise
 ```
 
 6. `cd` back into the `workoutwars` folder:
@@ -598,7 +598,7 @@ cd ..
 7. Load the data:
 
 ```
-python manage.py loaddata teams.json
+python3 manage.py loaddata teams.json
 ```
 
 You should see:
@@ -610,6 +610,6 @@ Installed xx object(s) from 1 fixture(s)
 Repeat for classes and exercises:
 
 ```
-python manage.py loaddata classes.json
-python manage.py loaddata exercises.json
+python3 manage.py loaddata classes.json
+python3 manage.py loaddata exercises.json
 ```
