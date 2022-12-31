@@ -46,4 +46,4 @@ ID,name,description,notes,increment,measurement,multiplier
 45,Skiing (XC), XC Skiing,,15,mins,1.5
 46,Spinning, Spinning,,15,mins,1.75
 47,Running (Sprints), Sprints,,4,mins,1.85
-48,Bonus Points, 15 pts of strength/conditioning and 5 pts of recovery and 5 pts of mental strength within a week,,4,reps,1
+48,Bonus Points, 15 pts of strength/conditioning and 5 pts of recovery and 5 pts of mental strength within a week,,1,reps,4
